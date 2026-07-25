@@ -1,0 +1,26 @@
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "C:\\Users\\user\\Documents\\Codex\\2026Claude\\100_Todo\\projects\\active\\2607南京用友出行"
+publishOrigin = "default"
+base = "C:\\Users\\user\\Documents\\Codex\\2026Claude\\100_Todo\\projects\\active\\2607南京用友出行"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南京行程規劃 8/2–8/8</title>
+<style>
+  :root {
+    --cream: #FAF7F0;
+    --white: #FFFFFF;
+    --dark: #2B2A26;
+    --gray: #6B6A63;
+    --lgray: #9B9A92;
+    --border: #E4DFD3;
+    --light: #F1ECE0;
+    --accent: #B5793A;
+    --accent2: #6E8B6E;
+    --accent3: #C0473B;
+  }
+  [data-theme="dark"] {
+    --cream: #0D0F1C;
+    --white: #161929;
+    --dark: #DDE3F5;
+    --gray: #8B96B5;
+    --lgray: #596285;
+    --border: #242845;
+    --light: #1A1E33;
+    --accent: #E0A85E;
+    --accent2: #8FBF8F;
+    --accent3: #E37568;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    transition: background .3s, color .3s;
+    padding-bottom: 80px;
+  }
+  header {
+    padding: 40px 20px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { margin: 0 0 8px; font-size: 1.6rem; letter-spacing: 1px; }
+  header p { margin: 0; color: var(--gray); font-size: .95rem; }
+  header a.backlink { display: inline-block; margin-top: 10px; font-size: .85rem; color: var(--accent); text-decoration: none; }
+  header a.backlink:hover { text-decoration: underline; }
+  .header-inner { position: relative; max-width: 860px; margin: 0 auto; }
+  .header-inner .updated { position: absolute; top: 6px; right: 20px; font-size: .75rem; color: var(--accent3); font-weight: 600; white-space: nowrap; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .summary-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .summary-card .label { font-size: .75rem; color: var(--gray); margin-bottom: 6px; }
+  .summary-card .value { font-size: .95rem; font-weight: 600; line-height: 1.5; }
+
+  .hotel-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 32px;
+  }
+  .hotel-section h2 { margin-top: 0; font-size: 1.1rem; }
+  .hotel-item { padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: .9rem; line-height: 1.7; }
+  .hotel-item:last-child { border-bottom: none; }
+  .hotel-item .name { font-weight: 700; color: var(--accent); }
+  .hotel-item .tag {
+    display: inline-block; background: var(--light); color: var(--gray);
+    font-size: .75rem; padding: 2px 8px; border-radius: 6px; margin-left: 6px;
+  }
+
+  .day-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .day-header {
+    padding: 14px 20px;
+    background: var(--light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-header .day-num { font-weight: 700; color: var(--accent); font-size: .95rem; }
+  .day-header .day-title { font-weight: 700; font-size: 1.05rem; }
+  .day-header .day-date { font-size: .8rem; color: var(--gray); }
+
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--gray); font-weight: 600; font-size: .78rem; background: var(--white); }
+  tr:last-child td { border-bottom: none; }
+  td.time { color: var(--accent); font-weight: 700; white-space: nowrap; width: 92px; }
+  td.note { color: var(--gray); font-size: .82rem; }
+
+  .highlight-row td { background: var(--light); font-weight: 700; }
+
+  .note-box {
+    background: var(--light);
+    border-left: 3px solid var(--accent2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 14px 16px 16px;
+    font-size: .85rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--lgray);
+    font-size: .78rem;
+    padding: 20px;
+  }
+
+  .theme-toggle {
+    position: fixed; bottom: 24px; right: 20px; z-index: 999;
+    width: 48px; height: 48px; border-radius: 50%; border: none;
+    cursor: pointer; font-size: 22px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 3px 14px rgba(0,0,0,.25);
+    transition: background .3s, transform .2s;
+    background: #fff; color: #333;
+  }
+  .theme-toggle:hover { transform: scale(1.1); }
+  [data-theme="dark"] .theme-toggle {
+    background: #1E2340; color: #DDE3F5;
+    box-shadow: 0 3px 14px rgba(0,0,0,.5);
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.3rem; }
+    .header-inner .updated { position: static; display: block; margin-top: 6px; text-align: center; }
+    .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .summary-card { padding: 12px; }
+    .summary-card .value { font-size: .85rem; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 10px 14px; }
+    tr:last-child { border-bottom: none; }
+    td { border-bottom: none; padding: 3px 0; }
+    td.time { color: var(--accent); font-weight: 700; }
+    td.time::before { content: "⏰ "; }
+    td:not(.time):not(.note)::before { content: "▸ "; color: var(--accent2); }
+    .day-header { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" title="切換深色／淺色模式">🌙</button>
+
+<header>
+  <div class="header-inner">
+    <h1>南京行程規劃</h1>
+    <span class="updated">最新修改日期 2026-07-24</span>
+    <p>2026年8月2日（日）— 8月8日（六）｜台北松山 ⇌ 上海</p>
+    <a class="backlink" href="./map.html">查看每日路線地圖 →</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">去程航班</div>
+      <div class="value">8/2（日）長榮<br>松山 08:00 → 浦東 10:00</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">回程航班</div>
+      <div class="value">8/8（六）長榮<br>虹橋 19:40 → 松山 21:45</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">去程高鐵</div>
+      <div class="value">8/2 復興號 G740<br>虹橋 12:05 → 南京南 13:12</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">回程高鐵</div>
+      <div class="value">8/8 G7611 南京南08:46→杭州東10:08<br>杭州東→上海虹橋 時間待確認</div>
+    </div>
+  </div>
+
+  <div class="hotel-section">
+    <h2>🏨 住宿</h2>
+    <div class="hotel-item">
+      <span class="name">南京金陵飯店</span><span class="tag">8/2–8/6・4晚</span><br>
+      地址：漢中路2號（新街口）｜訂房請註明入住 <strong>亞太樓</strong>
+    </div>
+    <div class="hotel-item">
+      <span class="name">南京新華傳媒大酒店</span><span class="tag">8/6–8/8・2晚</span><br>
+      地址：江東中路363號（河西新城）｜地鐵 <strong>元通站4號口</strong>
+    </div>
+  </div>
+
+  <div class="hotel-section">
+    <h2>📋 追蹤待辦</h2>
+    <div class="hotel-item">
+      <span class="name">已知參訪台商</span><span class="tag">陸續確認中</span><br>
+      太古汽車、旺旺、訊威、華新麗華、老子鍋、中華汽車、大世科
+    </div>
+    <div class="hotel-item">
+      <span class="name">待辦</span><span class="tag">8/7–8/8</span><br>
+      與上述台商交流，評估與考量用友ERP使用情形
+    </div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="day-card">
+    <div class="day-header">
+      <span class="day-num">Day 1</span>
+      <span class="day-title">抵達南京・總統府・六朝博物館・1912</span>
+      <span class="day-date">8/2（日）</span>
+    </div>
+    <table>
+      <thead><tr><th>時間</th><th>行程</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td class="time">08:00</td><td>長榮 松山 → 浦東 起飛</td><td class="note"></td></tr>
+        <tr><td class="time">10:00</td><td>降落浦東機場</td><td class="note"></td></tr>
+        <tr><td class="time">10:00–10:23</td><td>人臉辨識自助通關</td><td class="note">手提行李，免等提領</td></tr>
+        <tr><td class="time">10:30–11:08</td><td>市域機場線 浦東機場 → 虹橋2號航站樓</td><td class="note"></td></tr>
+        <tr><td class="time">11:08–11:17</td><td>步行至虹橋火車站</td><td class="note">470公尺，約9分鐘</td></tr>
+        <tr><td class="time">11:17–12:00</td><td>買便當、候車</td><td class="note"></td></tr>
+        <tr class="highlight-row"><td class="time">12:05</td><td>復興號 G740 虹橋 → 南京南站</td><td class="note"></td></tr>
+        <tr class="highlight-row"><td class="time">13:12</td><td>抵達南京南站</td><td class="note"></td></tr>
+        <tr><td class="time">約13:40</td><td>抵達金陵飯店（亞太樓），辦理入住</td><td class="note"></td></tr>
+        <tr><td class="time">14:30</td><td>金陵飯店出發，搭地鐵</td><td class="note"></td></tr>
+        <tr><td class="time">約15:00–16:00</td><td>六朝博物館</td><td class="note">館不大，1小時足夠</td></tr>
+        <tr><td class="time">16:00–16:15</td><td>步行至南京總統府</td><td class="note">同商圈，很近</td></tr>
+        <tr class="highlight-row"><td class="time">16:15–18:00</td><td>南京總統府</td><td class="note">18:00閉館；需微信小程序提前預約，選16:00–16:30入園時段</td></tr>
+        <tr><td class="time">18:00起</td><td>步行至1912園區逛逛</td><td class="note">緊鄰總統府</td></tr>
+        <tr><td class="time">晚餐</td><td>1912附近 或 德基廣場附近用餐</td><td class="note">視當天精神狀況決定</td></tr>
+      </tbody>
+    </table>
+    <div class="note-box">
+      秦淮河夜遊／老門東：已從8/2移出，改排至8/4晚上（與中華門甕城同一天）。<br>
+      💡 <strong>德基藝術博物館提醒</strong>：不固定排程，8/2–8/4晚上若剛好到德基廣場用餐、有空檔就順道去看，沒空就取消不勉強安排。
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-card">
+    <div class="day-header">
+      <span class="day-num">Day 2</span>
+      <span class="day-title">玄武湖悠遊・明城牆台城漫步</span>
+      <span class="day-date">8/3（一）</span>
+    </div>
+    <table>
+      <thead><tr><th>時間</th><th>行程</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td class="time">10:00</td><td>金陵飯店出發 → 玄武湖解放門入口</td><td class="note">打車約15分鐘</td></tr>
+        <tr><td class="time">10:20</td><td>解放門周邊散步、賞蓮熱身</td><td class="note"></td></tr>
+        <tr class="highlight-row"><td class="time">11:00–12:00</td><td>北湖碼頭搭「大船遊覽線路」遊湖</td><td class="note">選大船不選畫舫／電動船，穩定性最好；建議攜程提前訂票</td></tr>
+        <tr><td class="time">12:00–13:00</td><td>翠洲大草坪野餐午餐</td><td class="note">自帶簡單輕食，夏天樹蔭多較涼爽</td></tr>
+        <tr class="highlight-row"><td class="time">13:30–16:00</td><td>明城牆：解放門 → 台城 → 太平門</td><td class="note">這段風景最集中，可在「台城書房」休息拍照</td></tr>
+        <tr><td class="time">16:00–16:30</td><td>返回酒店休息</td><td class="note"></td></tr>
+        <tr><td class="time">晚餐</td><td>外婆家（南京新百店）優先 → 桂滿隴（德基一期7樓）次選 → 小廚娘淮揚菜 備用</td><td class="note">全員不吃鴨肉；Kim吃素可吃肉邊菜</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-card">
+    <div class="day-header">
+      <span class="day-num">Day 3</span>
+      <span class="day-title">牛首山・中華門甕城・秦淮夜遊</span>
+      <span class="day-date">8/4（二）</span>
+    </div>
+    <table>
+      <thead><tr><th>時間</th><th>行程</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td class="time">09:30</td><td>金陵飯店出發，先在附近買好咖啡帶著</td><td class="note">搭T3出行或曹操出行，勾選「優享」或「專車」</td></tr>
+        <tr class="highlight-row"><td class="time">約10:00–10:15</td><td>抵達牛首山東入口</td><td class="note">符合微信預約10:00–11:30入園時段</td></tr>
+        <tr><td class="time">10:15–約11:15</td><td>牛首東站 直達 天闕東站（佛頂聖境）</td><td class="note">多數東門遊客直接搭到天闕站參觀佛頂宮，不繞經佛頂寺站</td></tr>
+        <tr class="highlight-row"><td class="time">約11:15–13:00</td><td>佛頂聖境・佛頂宮參觀</td><td class="note">天闕東站／天闕西站範圍</td></tr>
+        <tr><td class="time">13:00–13:45</td><td>隱龍湖散步</td><td class="note">天闕西站搭觀光車前往</td></tr>
+        <tr><td class="time">約13:45–14:15</td><td>回程視體力於佛頂寺站下車參觀</td><td class="note">體力不夠可直接跳過，續搭回牛首東站</td></tr>
+        <tr><td class="time">約14:15–14:30</td><td>抵達牛首東站，返回東入口</td><td class="note"></td></tr>
+        <tr><td class="time">約14:30–14:50</td><td>牛首東站下車後步行至「牛首小鎮」（東入口周邊）逛逛</td><td class="note">文創店、水吧咖啡、素食餐飲選擇多；確切步行距離現場問遊客中心較準</td></tr>
+        <tr><td class="time">14:50起</td><td>東入口叫車（T3／曹操出行，優享或專車）返回金陵飯店</td><td class="note">東入口是主入口，調度密集，平日好叫；旁邊即有星巴克</td></tr>
+        <tr><td class="time">約14:50–16:15</td><td>回酒店休息</td><td class="note"></td></tr>
+        <tr><td class="time">16:15</td><td>金陵飯店出發（提早一些）</td><td class="note">打車或地鐵前往中華門</td></tr>
+        <tr class="highlight-row"><td class="time">16:45–18:00</td><td>南京城牆・中華門甕城</td><td class="note">全年開放至21:30，現存規模最大的甕城；8/4為週二無燈光秀（週五至週日才有）</td></tr>
+        <tr><td class="time">18:00–18:15</td><td>步行至夫子廟</td><td class="note">10–15分鐘</td></tr>
+        <tr><td class="time">18:15–19:15</td><td>晚餐：南京食朝匯（夫子廟桃葉渡店）</td><td class="note">備選：小廚娘淮揚菜（夫子廟茂業店）；招牌非鴨肉：民國松鼠魚、三杯雞、鮑魚土豆紅燒肉</td></tr>
+        <tr><td class="time">19:15–19:30</td><td>夫子廟秦淮風光帶隨意逛逛</td><td class="note">貢院街、大成殿周邊</td></tr>
+        <tr class="highlight-row"><td class="time">19:30–20:30</td><td>西五華里《夜泊秦淮》沉浸式遊船</td><td class="note">泮池遊船碼頭（夫子廟景區內）；100元/人，約50分鐘，途經中華門、糖坊廊古戲台、仙鶴橋、西水關；建議微信公眾號／攜程提前訂票</td></tr>
+        <tr><td class="time">20:30後</td><td>逛夫子廟夜市，或返回酒店</td><td class="note"></td></tr>
+      </tbody>
+    </table>
+    <div class="note-box">
+      🚃 <strong>觀光車東線站點順序</strong>：牛首東站（起點）→ 佛頂寺站 → 天闕東站（佛頂聖境／佛頂宮）→ 天闕西站 → 隱龍湖站 → 返回牛首東站。多數從東門入園的遊客會直接搭到「天闕站（佛頂聖境）」參觀佛頂宮，回程再視體力於「佛頂寺站」下車參觀。<br>
+      🎫 <strong>票價</strong>：通乘票20元/人（各站可搭，同站二次搭乘需重買，建議買這種）、單次票10元/人（僅限購票站）。運營時間08:30–18:00，發車間隔請現場確認（官網未載明確切間隔）。<br>
+      ☕ <strong>咖啡</strong>：東入口旁確認有星巴克；園區內「佛頂前苑禪茶」也可坐下配自帶輕食。牛首小鎮商業街內另有水吧咖啡、烘焙甜品、多家素食餐廳（一簞蔬食、緹香素悅等），Kim若想吃熱食這裡選擇不少。<br>
+      📞 景區客服：400-165-6363
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="day-card">
+    <div class="day-header">
+      <span class="day-num">Day 4</span>
+      <span class="day-title">明孝陵・中山陵・中山碼頭・浦口</span>
+      <span class="day-date">8/5（三）</span>
+    </div>
+    <table>
+      <thead><tr><th>時間</th><th>行程</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td class="time">09:30</td><td>金陵飯店出發，搭地鐵2號線</td><td class="note">不用換乘，直達</td></tr>
+        <tr><td class="time">約09:50–10:00</td><td>抵達苜蓿園站1號口</td><td class="note"></td></tr>
+        <tr><td class="time">約10:00–10:10</td><td>步行至明孝陵3號門</td><td class="note">約460公尺，靠近梅花谷、長生鹿苑</td></tr>
+        <tr><td class="time">10:10–12:00</td><td>明孝陵遊覽</td><td class="note">石象路、方城明樓</td></tr>
+        <tr class="highlight-row"><td class="time">12:00–13:00</td><td>午餐：雲幾・南京茶館（鍾山店）</td><td class="note">四方城西路10號，近南京海底世界；人均約100元；建議提前用大眾點評/攜程訂包廂（13:00後包廂常被訂光）</td></tr>
+        <tr><td class="time">13:00–13:20</td><td>前往中山陵</td><td class="note">景區觀光車約18分鐘（單程10元／不限次50元），或步行1.7公里</td></tr>
+        <tr><td class="time">13:20–15:30</td><td>中山陵遊覽</td><td class="note">392級台階</td></tr>
+        <tr><td class="time">15:30</td><td>博愛廣場搭景區觀光車1號線</td><td class="note">約10分鐘、10元/人，前往苜蓿園站方向</td></tr>
+        <tr><td class="time">約15:40–15:45</td><td>抵達苜蓿園站1號口，進站</td><td class="note"></td></tr>
+        <tr><td class="time">15:45起</td><td>搭地鐵2號線</td><td class="note">苜蓿園站上車</td></tr>
+        <tr><td class="time">約16:05–16:10</td><td>抵達上海路站，轉乘5號線</td><td class="note">2號線→5號線換乘站</td></tr>
+        <tr><td class="time">約16:10起</td><td>搭地鐵5號線</td><td class="note">上海路站上車</td></tr>
+        <tr><td class="time">約16:25–16:30</td><td>抵達下關站，出站</td><td class="note">步行約5分鐘到中山碼頭</td></tr>
+        <tr><td class="time">約16:30</td><td>抵達中山碼頭</td><td class="note">提早到，先在碼頭周邊散步、拍照打發時間</td></tr>
+        <tr class="highlight-row"><td class="time">17:30–18:00</td><td>搭渡輪（3層甲板）中山碼頭 → 浦口碼頭</td><td class="note">10元/人，航程約10分鐘</td></tr>
+        <tr><td class="time">約18:00–18:45</td><td>浦口火車站文旅區周邊漫步拍照</td><td class="note">⚠️ 17:00停止入場、17:30閉館，只能欣賞外觀建築，無法進入室內設施；朱自清《背影》原型地</td></tr>
+        <tr class="highlight-row"><td class="time">18:45</td><td>從浦口碼頭搭乘末班渡輪返回中山碼頭</td><td class="note">⚠️ 末班船19:00，18:45上船留緩衝，勿拖到最後一刻</td></tr>
+        <tr><td class="time">約19:00</td><td>抵達中山碼頭</td><td class="note"></td></tr>
+        <tr><td class="time">19:00–19:20</td><td>打車前往德基廣場</td><td class="note">走了一整天，建議直接打車，車程約15–20分鐘</td></tr>
+        <tr><td class="time">19:30–20:30</td><td>德基廣場周邊簡單晚餐</td><td class="note">中午已在雲幾吃過正餐，這餐輕鬆點即可</td></tr>
+        <tr><td class="time">晚上</td><td>返回金陵飯店</td><td class="note">德基藝術博物館視當晚精神狀況彈性安排，沒空就跳過</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="day-card">
+    <div class="day-header">
+      <span class="day-num">Day 5</span>
+      <span class="day-title">南京博物院・轉住河西・南京眼</span>
+      <span class="day-date">8/6（四）</span>
+    </div>
+    <table>
+      <thead><tr><th>時間</th><th>行程</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr class="highlight-row"><td class="time">上午整個時段</td><td>南京博物院</td><td class="note">不用趕，慢慢逛；大報恩寺琉璃塔拱門必看</td></tr>
+        <tr><td class="time">中午</td><td>返回金陵飯店，退房</td><td class="note"></td></tr>
+        <tr><td class="time">下午（早）</td><td>打車前往新華傳媒大酒店，辦理入住</td><td class="note">車程約20–25分鐘</td></tr>
+        <tr><td class="time">下午（晚）</td><td>休息／自由活動</td><td class="note">上午行程較悠閒，下午可以睡個午覺</td></tr>
+        <tr><td class="time">傍晚</td><td>南京眼步行橋</td><td class="note">河西濱江地標，夕陽＋夜景</td></tr>
+        <tr><td class="time">晚上</td><td>河西濱江晚餐</td><td class="note"></td></tr>
+      </tbody>
+    </table>
+    <div class="note-box">中華門甕城已移至8/4（與秦淮夜遊同一天）；侵華日軍南京大屠殺遇難同胞紀念館已移除，改為南京博物院。</div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="day-card">
+    <div class="day-header">
+      <span class="day-num">Day 6</span>
+      <span class="day-title">用友商業創新大會（全天）</span>
+      <span class="day-date">8/7（五）</span>
+    </div>
+    <table>
+      <thead><tr><th>時間</th><th>行程</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td class="time">早上</td><td>步行／短程前往南京國際博覽中心</td><td class="note">江東中路300號，緊鄰酒店</td></tr>
+        <tr><td class="time">全天</td><td>用友商業創新大會</td><td class="note"></td></tr>
+        <tr><td class="time">晚上</td><td>大會後附近晚餐，早點休息</td><td class="note">隔天還有參訪＋返程</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="day-card">
+    <div class="day-header">
+      <span class="day-num">Day 7</span>
+      <span class="day-title">阿里雲谷參訪・返程</span>
+      <span class="day-date">8/8（六）</span>
+    </div>
+    <table>
+      <thead><tr><th>時間</th><th>行程</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td class="time">07:15</td><td>南京酒店統一集合，乘大巴出發</td><td class="note">前往南京南站</td></tr>
+        <tr class="highlight-row"><td class="time">08:46</td><td>高鐵 G7611 南京南 → 杭州東</td><td class="note">第二批次（台灣、新加坡、泰國）；車票由用友Tina協助購買，費用回台後結算給Tina</td></tr>
+        <tr class="highlight-row"><td class="time">10:08</td><td>抵達杭州東站</td><td class="note"></td></tr>
+        <tr><td class="time">10:08–11:10</td><td>接駁車前往阿里雲谷</td><td class="note">接駁車由用友Tina協助安排，費用回台後結算給Tina</td></tr>
+        <tr><td class="time">11:10–12:00</td><td>參觀阿里雲谷</td><td class="note">第二批次（台灣、新加坡、泰國）；杭州市西湖區三墩鎮燈彩街1008號 10號門（如與現場集合地點有異，依主辦方通知為準）</td></tr>
+        <tr><td class="time">12:00–13:30</td><td>餐敘環節</td><td class="note"></td></tr>
+        <tr><td class="time">13:30–15:30</td><td>專家分享與交流</td><td class="note"></td></tr>
+        <tr><td class="time">15:30</td><td>活動結束，搭車前往杭州東站</td><td class="note">接駁車由用友Tina協助安排，費用回台後結算給Tina</td></tr>
+        <tr><td class="time">待確認</td><td>高鐵 杭州東 → 上海虹橋</td><td class="note">車次與時刻待確認；車票由用友Tina協助購買，費用回台後結算給Tina</td></tr>
+        <tr><td class="time">抵達後</td><td>步行至虹橋機場T1</td><td class="note"></td></tr>
+        <tr><td class="time">時間待確認</td><td>長榮航空報到、安檢、通關</td><td class="note">建議預留至少3小時緩衝</td></tr>
+        <tr class="highlight-row"><td class="time">19:40</td><td>上海 → 台北 起飛</td><td class="note"></td></tr>
+        <tr class="highlight-row"><td class="time">21:45</td><td>抵達台北松山</td><td class="note"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-box">
+    💡 全程僅手提行李，出入境與轉乘皆抓較寬鬆但不過度保守的緩衝時間。若任一段實際搭乘班次臨時異動，建議優先用 12306 App 於發車前辦理改簽，避免開車後誤車的退票限制。
+  </div>
+
+</div>
+
+<footer>南京行程規劃・最後更新 2026-07-24</footer>
+
+<script>
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('page-theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('page-theme') || 'light';
+  if (saved === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('themeBtn').textContent = '☀️';
+  }
+})();
+</script>
+
+</body>
+</html>
