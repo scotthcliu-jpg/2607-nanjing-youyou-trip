@@ -2,7 +2,7 @@
 
 ## 目前做到哪
 
-Day 7（8/8）行程已改為官方確認時刻表（07:15集合→高鐵G7611南京南→杭州東→阿里雲谷參訪→餐敘→專家交流→15:30返程），並新增「📋 追蹤待辦」區塊記錄已知參訪台商名單與 8/7–8/8 用友ERP評估交流待辦。已部署上線並 push GitHub。
+南京行程已完成獨立 repo 文件修復與 Netlify 整併。唯一正式網址為 `https://scott-nanjing-trip-202608.netlify.app/`；舊站已移除，本機 site link 已指向正式 Site ID。
 
 ## 目前狀態
 
@@ -13,14 +13,15 @@ Day 7（8/8）行程已改為官方確認時刻表（07:15集合→高鐵G7611�
 - handoff_ready: yes
 - session start commit: `3ba277b9ed65e454916e45e76ba7526582b3f557`
 - expected branch: `main`
-- expected remote: `https://github.com/scotthcliu-jpg/my-agent-2026.git`
+- expected Git root: `C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行`
+- expected remote: `https://github.com/scotthcliu-jpg/2607-nanjing-youyou-trip.git`
 - last sync verification: 見本次收工回報的 commit hash（fresh `git ls-remote` 已確認 local HEAD = remote HEAD）
 - last updater: `Claude Code @ TZNB1169`
 - next Agent rule: 可接手，先在本機 NTFS 路徑執行唯讀 `project-startup`；任何閘門失敗即停止。
 
 ## 下一步
 
-1. 向用友Tina／自行確認杭州東→上海虹橋高鐵確切車次與時刻，補進 `2026-07-08_南京行程.html`，並用 `netlify deploy --prod --dir=<暫存目錄含 index.html/map.html> --site=8f7231c2-e5c7-4d62-88df-2926d3529026` 重新部署。
+1. 向用友Tina／自行確認杭州東→上海虹橋高鐵確切車次與時刻，補進 `2026-07-08_南京行程.html`，並用已連結的正式 Netlify site 重新部署。
 2. 8/7–8/8 與台商（太古汽車、旺旺、訊威、華新麗華、老子鍋、中華汽車、大世科）交流用友ERP評估，安排/結論確定後補進行程頁「追蹤待辦」區塊。
 3. 逐一核對 Day 1–6 行程內容是否為最新版本。
 
@@ -39,7 +40,7 @@ Day 7（8/8）行程已改為官方確認時刻表（07:15集合→高鐵G7611�
 | Version GitHub | 已 commit 並 push，local HEAD = remote HEAD（見最終回報 commit hash） |
 | Knowledge Google Drive | unchanged（本次未回寫 G 槽，G 槽仍為唯讀 legacy 來源） |
 | Obsidian | 已更新 `G:\我的雲端硬碟\第二大腦\Projects\2607南京用友出行.md` |
-| Netlify | 已部署，production URL 與內容一致 |
+| Netlify | 唯一正式站：`scott-nanjing-trip-202608`（Site ID `8f7231c2-e5c7-4d62-88df-2926d3529026`）；舊站已移除 |
 
 ## 最後更新
 

@@ -5,10 +5,10 @@
 | 角色 | 正式位置 |
 |---|---|
 | Execution 本機 NTFS | `C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行` |
-| Version Git root | `C:\Users\user\Documents\Codex\2026Claude` |
-| Version GitHub | `https://github.com/scotthcliu-jpg/my-agent-2026.git` |
+| Version Git root | `C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行` |
+| Version GitHub | `https://github.com/scotthcliu-jpg/2607-nanjing-youyou-trip.git` |
 | 預設 branch | `main` |
-| 獨立 repo | `no` |
+| 獨立 repo | `yes` |
 | Knowledge／legacy source | `G:\我的雲端硬碟\2026Claude\100_Todo\projects\active\2607南京用友出行`（唯讀，不作為 Agent workspace） |
 | 架構 release | `agent-sync-v1.1.0` |
 
@@ -17,7 +17,7 @@
 - 專案名稱：2607南京用友出行
 - 工作區路徑：`C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行`
 - 建立/補建時間：2026-07-21 16:14
-- GitHub：monorepo `scotthcliu-jpg/my-agent-2026`（見上方架構定位）
+- GitHub：獨立 repo `scotthcliu-jpg/2607-nanjing-youyou-trip`（見上方架構定位）
 - Obsidian：`G:\我的雲端硬碟\第二大腦\Projects\2607南京用友出行.md`
 
 ## 目標
@@ -32,12 +32,13 @@
   - `2026-07-08_南京行程.html`（8/2–8/8 行程規劃主頁，部署為 Netlify `index.html`）
   - `2026-07-08_南京行程地圖.html`（行程地圖版，部署為 Netlify `map.html`）
 - 尚未看到票務、會議紀錄、報告等其他資料。
-- 已確認 GitHub：monorepo `scotthcliu-jpg/my-agent-2026`（非獨立 repo）。
+- 已確認 GitHub：獨立 repo `scotthcliu-jpg/2607-nanjing-youyou-trip`。
 
 ## Netlify 部署
 
 - Production URL：`https://scott-nanjing-trip-202608.netlify.app/`
 - Site ID：`8f7231c2-e5c7-4d62-88df-2926d3529026`（帳號 Scott.hcliu Liu，team TzuChi）
+- 正式站點：上述網址為唯一 Production URL；舊站 `scott-nanjing-2026-itinerary.netlify.app` 已於 2026-07-26 移除。
 - 部署方式：`netlify deploy --prod --dir=<暫存目錄含 index.html/map.html> --site=8f7231c2-e5c7-4d62-88df-2926d3529026`
   （`2026-07-08_南京行程.html` → `index.html`；`2026-07-08_南京行程地圖.html` → `map.html`；暫存目錄用完即刪，不進版控）
 - 每次改完本機 HTML 都要重新跑上述指令部署，否則網站不會更新。

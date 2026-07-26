@@ -3,7 +3,7 @@
 ## 執行位置閘門（優先規則）
 
 - 唯一可編輯與執行的專案路徑：`C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行`。
-- Version Git root：`C:\Users\user\Documents\Codex\2026Claude`；remote：`https://github.com/scotthcliu-jpg/my-agent-2026.git`；branch：`main`。
+- Version Git root：`C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行`；remote：`https://github.com/scotthcliu-jpg/2607-nanjing-youyou-trip.git`；branch：`main`。
 - Google Drive 專案路徑只作為 Knowledge／legacy source；禁止在 G 槽編輯、測試、建立 Git repo 或 commit。
 - 「開工／接續」一律使用 `project-startup`；舊 `project-kickoff` 已刪除。
 - `handoff_ready` 不是 `yes`、工作樹不乾淨或 local HEAD 不等於 remote HEAD 時，必須停止並回報 `blocked`。
