@@ -10,7 +10,7 @@
 
 ## 接手狀態
 
-- handoff_ready: no
+- handoff_ready: yes
 - session start commit: `3ba277b9ed65e454916e45e76ba7526582b3f557`
 - expected branch: `main`
 - expected Git root: `C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行`
