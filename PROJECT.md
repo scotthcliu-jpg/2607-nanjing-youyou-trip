@@ -34,16 +34,13 @@
 - 尚未看到票務、會議紀錄、報告等其他資料。
 - 已確認 GitHub：獨立 repo `scotthcliu-jpg/2607-nanjing-youyou-trip`。
 
-## Netlify 部署
+## GitHub Pages 部署
 
-- Production URL：`https://scott-nanjing-trip-202608.netlify.app/`
-- Site ID：`8f7231c2-e5c7-4d62-88df-2926d3529026`（帳號 Scott.hcliu Liu，team TzuChi）
-- 正式站點：上述網址為唯一 Production URL；舊站 `scott-nanjing-2026-itinerary.netlify.app` 已於 2026-07-26 移除。
-- 部署方式：`netlify deploy --prod --dir=<暫存目錄含 index.html/map.html> --site=8f7231c2-e5c7-4d62-88df-2926d3529026`
-  （`2026-07-08_南京行程.html` → `index.html`；`2026-07-08_南京行程地圖.html` → `map.html`；暫存目錄用完即刪，不進版控）
-- 每次改完本機 HTML 都要重新跑上述指令部署，否則網站不會更新。
-- 本機 Node.js 於 2026-07-24 重新安裝（v24.18.0），Netlify CLI（26.1.0）授權沿用既有 `~/.netlify/config`。
-- `.netlify/`（CLI 於專案內產生的機器專屬設定）已加入根目錄 `.gitignore`，不進版控。
+- Production URL：`https://scotthcliu-jpg.github.io/2607-nanjing-youyou-trip/`
+- 發布來源：GitHub repository `main` branch 的根目錄。
+- `index.html` 轉址至 `2026-07-08_南京行程.html`；`map.html` 轉址至 `2026-07-08_南京行程地圖.html`，保留原始中文檔名。
+- 此站以公開 GitHub Pages 發布；行程內容可由任何持有網址者存取。
+- 不再使用 Netlify 部署。
 
 ## 目前狀態
 
@@ -52,6 +49,7 @@
 - 2026-07-24：Day 7（8/8）行程改為官方確認時刻表——「阿里雲谷參訪・返程」：07:15 南京酒店集合搭大巴 → 08:46 高鐵 G7611 南京南→杭州東（10:08 抵達，第二批次：台灣／新加坡／泰國）→ 接駁車前往阿里雲谷 → 11:10–12:00 參觀 → 12:00–13:30 餐敘 → 13:30–15:30 專家分享與交流 → 15:30 結束搭車返杭州東站 → 杭州東→上海虹橋（時刻待確認）→ 19:40 長榮飛松山。兩段高鐵車票與接駁車皆標註「由用友Tina協助購買/安排，費用回台後結算給Tina」。
 - 2026-07-24：新增「📋 追蹤待辦」區塊——已知參訪台商：太古汽車、旺旺、訊威、華新麗華、老子鍋、中華汽車、大世科；待辦：8/7–8/8 與台商交流、評估用友ERP使用情形。
 - 出行人員、工作目的（用友商業創新大會，8/7）與其餘每日行程細節已在 HTML 內，尚待逐一核對是否為最新版本。
+- 2026-07-31：正式網站改為 GitHub Pages；`main` branch 根目錄成功建置，GitHub Pages Production URL 已可公開存取。
 
 ## 待確認
 
