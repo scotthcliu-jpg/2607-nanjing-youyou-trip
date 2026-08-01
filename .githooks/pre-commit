@@ -7,18 +7,19 @@ staged="$(git diff --cached --name-only --diff-filter=ACMR)"
 if printf '%s\n' "$staged" | grep -Eiq '(^|/)(\.env|auth\.json|credentials?\.|.*secret.*|.*api[_-]?key.*|.*(access|refresh)[_-]?token.*|sessions?/|cache/|history/|telemetry/)'; then echo "[pre-commit] Blocked sensitive runtime, credential, or cache path." >&2; exit 1; fi
 
 # project-canonical-sync-guard: 1.0.0
-# Any committed project deliverable must carry the current durable project
-# record and handoff in the same commit. This prevents a direct content commit
-# from bypassing the project-wrapup Skill.
+# Any project deliverable must carry the durable project record and handoff in
+# the same commit. Do not use --no-verify to bypass this guard.
+staged="$(git diff --cached --name-only --diff-filter=ACMR)"
 noncanonical="$(printf '%s\n' "$staged" | grep -Ev '^(PROJECT|HANDOFF|AGENTS|CLAUDE)\.md$|^\.githooks/' || true)"
 if [ -n "$noncanonical" ]; then
   has_project="$(printf '%s\n' "$staged" | grep -Fx 'PROJECT.md' || true)"
   has_handoff="$(printf '%s\n' "$staged" | grep -Fx 'HANDOFF.md' || true)"
   if [ -z "$has_project" ] || [ -z "$has_handoff" ]; then
     echo "[pre-commit] Blocked: project content changes require PROJECT.md and HANDOFF.md in the same commit." >&2
-    echo "[pre-commit] Update the durable status and next-agent handoff, then stage both files. Do not use --no-verify." >&2
+    echo "[pre-commit] Update both files and stage them. Do not use --no-verify." >&2
     exit 1
   fi
 fi
+# project-canonical-sync-guard-end
 
 printf '%s\n' "$staged" | sed 's/^/[pre-commit] staged: /'
