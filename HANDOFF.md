@@ -28,6 +28,7 @@
 ## 注意事項
 
 - 正式公開頁由 GitHub Pages 的 `main` branch 根目錄提供；`index.html` 會轉址至 `2026-07-08_南京行程.html`，`map.html` 會轉址至地圖頁。Netlify 為舊部署，勿再使用。
+- 專案 pre-commit 已啟用 canonical-sync guard：行程或其他內容異動必須與 `PROJECT.md`、`HANDOFF.md` 同一 commit；禁止以 `--no-verify` 繞過。
 - 行程、票務、住宿、Tina 對接、參訪台商名單等內容含商業機敏性質，不要不必要外傳。
 - 本機共用 monorepo checkout 常有其他並行 Agent session 同時在別的專案資料夾下操作；commit 時務必用明確 pathspec（`git commit -- <path>`）只提交本專案檔案，勿用裸 `git commit -m` 吞掉別人 staged 的異動。push 前一定要先 `git fetch` 並確認 `origin/main` 是 `HEAD` 的祖先（fast-forward 安全）才 push。
 - 本機 Bash 工具偶爾會出現 coreutils（mkdir/cp/ls）找不到的狀況，此時改用 PowerShell 執行檔案操作與 git 指令即可。
