@@ -6,17 +6,17 @@
 
 ## 目前狀態
 
-- clean（本專案工作樹乾淨，local HEAD = remote HEAD）
+- clean（本專案工作樹乾淨，local HEAD = remote HEAD；2026-08-01 於專案起始檢核確認）
 
 ## 接手狀態
 
 - handoff_ready: yes
-- session start commit: `3ba277b9ed65e454916e45e76ba7526582b3f557`
+- session start commit: `4949bdf5d4ffc69d0c695fba5e3655a83b6b5b48`
 - expected branch: `main`
 - expected Git root: `C:\Users\user\Documents\Codex\2026Claude\100_Todo\projects\active\2607南京用友出行`
 - expected remote: `https://github.com/scotthcliu-jpg/2607-nanjing-youyou-trip.git`
-- last sync verification: 見本次收工回報的 commit hash（fresh `git ls-remote` 已確認 local HEAD = remote HEAD）
-- last updater: `Claude Code @ TZNB1169`
+- last sync verification: `2026-08-01 於 TZNB1169`；fresh `git ls-remote origin refs/heads/main` 已確認 `4949bdf5d4ffc69d0c695fba5e3655a83b6b5b48` 的 local HEAD = remote HEAD。
+- last updater: `Codex @ TZNB1169`
 - next Agent rule: 可接手，先在本機 NTFS 路徑執行唯讀 `project-startup`；任何閘門失敗即停止。
 
 ## 下一步
@@ -37,12 +37,12 @@
 | 層級 | 狀態 |
 |---|---|
 | Execution 本機 NTFS | clean |
-| Version GitHub | 已 commit 並 push，local HEAD = remote HEAD（見最終回報 commit hash） |
+| Version GitHub | 已 commit 並 push；2026-08-01 已以 fresh `git ls-remote` 確認 local HEAD = remote HEAD（`4949bdf5d4ffc69d0c695fba5e3655a83b6b5b48`） |
 | Knowledge Google Drive | unchanged（本次未回寫 G 槽，G 槽仍為唯讀 legacy 來源） |
 | Obsidian | 已更新 `G:\我的雲端硬碟\第二大腦\Projects\2607南京用友出行.md` |
 | Netlify | 唯一正式站：`scott-nanjing-trip-202608`（Site ID `8f7231c2-e5c7-4d62-88df-2926d3529026`）；舊站已移除 |
 
 ## 最後更新
 
-- 時間：2026-07-24
-- 更新者：Claude Code @ TZNB1169
+- 時間：2026-08-01
+- 更新者：Codex @ TZNB1169
