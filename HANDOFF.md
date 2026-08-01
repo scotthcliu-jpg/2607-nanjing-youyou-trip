@@ -1,5 +1,9 @@
 # HANDOFF
 
+## 架構同步（2026-08-01）
+
+- 已依 `project-init-sync` 對照已驗證架構版本：`agent-sync-v1.2.3`。
+
 ## 目前做到哪
 
 南京行程已使用獨立 repo 管理，正式公開頁為 GitHub Pages：`https://scotthcliu-jpg.github.io/2607-nanjing-youyou-trip/`。Day 7（8/8）兩段高鐵已由用友 Tina 確認並寫入行程頁：G7609 南京南 08:51→杭州東 10:19；G7644 杭州西 15:32→上海虹橋 16:55。

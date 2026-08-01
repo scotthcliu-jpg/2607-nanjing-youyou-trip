@@ -10,7 +10,7 @@
 | 預設 branch | `main` |
 | 獨立 repo | `yes` |
 | Knowledge／legacy source | `G:\我的雲端硬碟\2026Claude\100_Todo\projects\active\2607南京用友出行`（唯讀，不作為 Agent workspace） |
-| 架構 release | `agent-sync-v1.2.0` |
+| 架構 release | `agent-sync-v1.2.3` |
 
 ## 專案概覽
 
